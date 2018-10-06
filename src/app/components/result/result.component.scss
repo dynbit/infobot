@@ -1,0 +1,95 @@
+header {
+  .logo {
+    background-image: url(/assets/images/kaunas.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 85px;
+    width: 100px;
+    margin: 15px auto 0;
+  }
+}
+
+main {
+  position: relative;
+  display: block;
+  text-align: center;
+  min-height: 100%;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: left;
+
+  .wrapper {
+    position: relative;
+    display: inline-block;
+    margin: 0 auto;
+  }
+
+  .phrase {
+    background: rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    padding: 20px;
+    font-style: italic;
+    font-size: 18px;
+    width: 100%;
+  }
+
+  .location, .photos {
+    width: 50%;
+    float: left;
+  }
+
+  .location {
+    text-align: left;
+    padding: 20px;
+    box-sizing: border-box;
+
+    h1 {
+      font-size: 40px;
+      margin: 0;
+    }
+
+    p {
+      font-size: 20px;
+    }
+  }
+
+  .photos {
+    img {
+      display: inline-block;
+      float: left;
+      margin: 0 0 10px 10px;
+      width: calc(50% - 10px);
+    }
+  }
+
+  .map {
+    float: left;
+    width: 100%;
+  }
+
+  .return {
+    background: rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    padding: 20px;
+    font-style: italic;
+    font-size: 18px;
+    width: 100%;
+    float: left;
+
+    &:before {
+      display: inline-block;
+      content: "";
+      background-image: url(/assets/images/mic.png);
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 30px;
+      width: 30px;
+      float: left;
+    }
+  }
+
+}
+
+
+
