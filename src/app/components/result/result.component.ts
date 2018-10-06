@@ -25,6 +25,7 @@ class Result {
 export class ResultComponent implements OnInit {
 
   public result: Result = new Result();
+  public isLoading = true;
   public mapLink;
 
   constructor(
@@ -48,6 +49,8 @@ export class ResultComponent implements OnInit {
       let mapLink = `https://www.google.com/maps/embed/v1/place?q=${this.result.address}&key=${apiKey}` 
 
       this.mapLink = this.sanitizer.bypassSecurityTrustResourceUrl(mapLink);
+
+      this.isLoading = false;
 
     }, error => {
       console.error(error)
