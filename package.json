@@ -39,7 +39,8 @@
     "e2e": "npm run postinstall:web && ng e2e"
   },
   "dependencies": {
-    "angular-in-memory-web-api": "^0.6.1"
+    "angular-in-memory-web-api": "^0.6.1",
+    "image-promise": "^5.0.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "0.6.3",

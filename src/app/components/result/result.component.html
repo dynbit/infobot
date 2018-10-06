@@ -3,7 +3,10 @@
 </header>
 
 <main>
-	<div class="wrapper" *ngIf="isLoading">
+	<div class="wrapper loading" *ngIf="isLoading">
+
+		<h1>Got it!</h1>
+		<p>Just a sec...</p>
 
 		<div class="content preloader">
 			<div class="preloader-wrapper active">
@@ -21,7 +24,7 @@
 		
 	</div>
 
-	<div class="wrapper" *ngIf="!isLoading">
+	<div class="wrapper result" *ngIf="!isLoading">
 
 		<div class="phrase">
 			<h3>Here's what I heard</h3>

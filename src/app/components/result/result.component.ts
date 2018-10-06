@@ -1,8 +1,11 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Meta, Title, DomSanitizer } from '@angular/platform-browser';
+import { AppConfig } from '../../../environments/environment';
 
 import { ResultService } from './result.service';
+
+import loadImage from 'image-promise';
 
 class Result {
 
@@ -44,13 +47,26 @@ export class ResultComponent implements OnInit {
 
       this.result = new Result(data);
 
-      let apiKey = 'AIzaSyB75oo2fsOL16tlYq-NRMh5XZr5pb4LFQ8'
-
-      let mapLink = `https://www.google.com/maps/embed/v1/place?q=${this.result.address}&key=${apiKey}` 
+      let apiKey = AppConfig.googleMapsAPIkey;
+      let mapLink = `https://www.google.com/maps/embed/v1/place?q=${this.result.address}&key=${apiKey}`
+      let imagesToLoad = []; 
 
       this.mapLink = this.sanitizer.bypassSecurityTrustResourceUrl(mapLink);
 
-      this.isLoading = false;
+      this.result.photos.forEach(image => {
+
+        let imagePromise = loadImage(image).catch(function () {
+          console.error('Image failed to load :(');
+        });
+
+        imagesToLoad.push(imagePromise)
+
+      })
+
+      Promise.all(imagesToLoad).then(result => {
+        this.isLoading = false;
+      })
+
 
     }, error => {
       console.error(error)
