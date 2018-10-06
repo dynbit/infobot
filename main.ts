@@ -6,7 +6,48 @@ let win, serve;
 const args = process.argv.slice(1);
 serve = args.some(val => val === '--serve');
 
+function startSonus() {
+  const Sonus = require('sonus');
+  const path = require('path');
+  const speech = require('@google-cloud/speech')({
+    projectId: 'infobotas-1538826776838',
+    keyFilename: path.resolve('./keyfile.json')
+  });
+
+  const hotwords = [{ file: path.resolve('node_modules/sonus/resources/sonus.pmdl'), hotword: 'sonus' }]
+  const language = "en-US"
+
+  //recordProgram can also be 'arecord' which works much better on the Pi and low power devices
+  const sonus = Sonus.init({ hotwords, language, recordProgram: "rec" }, speech)
+
+  Sonus.start(sonus)
+  console.log('Say "' + hotwords[0].hotword + '"...')
+
+  sonus.on('hotword', (index, keyword) => console.log("!" + keyword))
+
+  sonus.on('partial-result', result => console.log("Partial", result))
+
+  sonus.on('final-result', result => {
+    console.log("Final", result)
+    if (result.includes("stop")) {
+      Sonus.stop()
+    }
+  })
+
+  // try{
+  //   Sonus.trigger(sonus, 2)
+  // } catch (e) {
+  //   console.log('Triggering Sonus with an invalid index will throw the following error:', e)
+  // }
+
+  //Will use index 0 with a hotword of "triggered" and start streaming immedietly
+  Sonus.trigger(sonus, 0, "some hotword")
+}
+
 function createWindow() {
+
+  var n = navigator;
+  n.getUserMedia({video: true, audio:true}, function (stream) {  }, function (error) {  });
 
   const electronScreen = screen;
   const size = electronScreen.getPrimaryDisplay().workAreaSize;
@@ -42,10 +83,10 @@ function createWindow() {
     win = null;
   });
 
+  startSonus()
 }
 
 try {
-
   // This method will be called when Electron has finished
   // initialization and is ready to create browser windows.
   // Some APIs can only be used after this event occurs.
