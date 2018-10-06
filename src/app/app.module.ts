@@ -21,6 +21,10 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { CallComponent } from './components/call/call.component';
 import { ResultComponent } from './components/result/result.component';
+import { ResultService } from './components/result/result.service';
+
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService }  from './in-memory-data.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -33,12 +37,15 @@ export function HttpLoaderFactory(http: HttpClient) {
     CallComponent,
     HomeComponent,
     ResultComponent,
-    WebviewDirective
+    WebviewDirective,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, { dataEncapsulation: false }
+    ),
     AppRoutingModule,
     TranslateModule.forRoot({
       loader: {
@@ -48,7 +55,10 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     })
   ],
-  providers: [ElectronService],
+  providers: [
+    ElectronService,
+    ResultService,
+   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
