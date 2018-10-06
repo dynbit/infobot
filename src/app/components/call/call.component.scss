@@ -1,0 +1,69 @@
+header {
+  .logo {
+    background-image: url(/assets/images/kaunas.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 85px;
+    width: 100px;
+    margin: 15px auto 0;
+  }
+}
+
+main {
+  position: relative;
+  display: block;
+  text-align: center;
+  min-height: 100%;
+  padding: 50px 0 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+
+  .wrapper {
+    position: relative;
+    white-space: nowrap;
+    display: inline-block;
+    margin: 0 auto 120px;
+  }
+
+
+  .mic {
+    background-image: url(/assets/images/mic.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100px;
+    width: 100px;
+    margin: 100px auto 50px;
+  }
+
+  p {
+    font-size: 40px;
+    font-style: italic;
+    margin: 0;
+  }
+
+  h2 {
+    font-size: 16px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .examples {
+    list-style: none;
+    text-align: left;
+    background: rgba(255,255,255,0.1);
+    margin: 0;
+    padding: 20px;
+
+    li {
+      font-size: 16px;
+      margin: 10px 0 10px 20px;
+      font-style: italic;
+    }
+  }
+
+
+}
+
+
+

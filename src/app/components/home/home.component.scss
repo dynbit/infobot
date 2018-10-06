@@ -1,0 +1,34 @@
+main {
+  position: relative;
+  display: block;
+  text-align: center;
+  min-height: 100%;
+  padding: 50px 0 0;
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+
+  .wrapper {
+    position: relative;
+    white-space: nowrap;
+    display: inline-block;
+    margin: 0 auto 0;
+  }
+
+
+  .logo {
+      background-image: url(/assets/images/kaunas.png);
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 200px;
+      width: 215px;
+  }
+
+  p {
+    font-size: 40px;
+    font-style: italic;
+    margin: 0;
+  }
+
+}
