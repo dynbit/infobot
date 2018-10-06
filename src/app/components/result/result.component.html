@@ -1,0 +1,57 @@
+<header>
+	<div class="logo"></div>
+</header>
+
+<main>
+	<div class="wrapper loading" *ngIf="isLoading">
+
+		<h1>Got it!</h1>
+		<p>Just a sec...</p>
+
+		<div class="content preloader">
+			<div class="preloader-wrapper active">
+				<div class="spinner-layer">
+					<div class="circle-clipper left">
+						<div class="circle"></div>
+					</div><div class="gap-patch">
+						<div class="circle"></div>
+					</div><div class="circle-clipper right">
+						<div class="circle"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+
+	<div class="wrapper result" *ngIf="!isLoading">
+
+		<div class="phrase">
+			<h3>Here's what I heard</h3>
+			<span>{{result.query}}</span>
+		</div>
+
+		<div class="location">
+			<h1>{{result.title}}</h1>
+			<p>
+				Address: <strong>{{result.address}}</strong><br>
+				Phone: <strong>{{result.phone}}</strong>
+			</p>
+			<p>{{result.desc}}</p>
+		</div>
+
+		<div class="photos">
+		   <img src="{{image}}" alt="{{result.title}}" *ngFor="let image of result.photos" />
+		</div>
+
+		<div class="map">
+			<iframe width="100%" height="450" frameborder="0" style="border:0"
+				[src]='mapLink' allowfullscreen></iframe>
+		</div>
+		
+		<div class="return">
+			Say <strong>"Hi Kaunas"</strong> to search again...
+		</div>
+		
+	</div>
+</main>
