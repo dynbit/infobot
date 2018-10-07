@@ -20,9 +20,7 @@ export class CallComponent implements OnInit {
   ) {}
 
   startRecognition = function(event) {
-
     this.recognition.start();
-
   }
 
 	ngOnInit() {
@@ -41,10 +39,7 @@ export class CallComponent implements OnInit {
     const {webkitSpeechRecognition} = (window as any)
 
     if (!('webkitSpeechRecognition' in window)) {
-      // upgrade();
-
-      console.log('aaa')
-
+      console.log('Not supported')
     } else {
 
       this.recognition = new webkitSpeechRecognition();
@@ -104,20 +99,15 @@ export class CallComponent implements OnInit {
         for (var i = event.resultIndex; i < event.results.length; ++i) {
           if (event.results[i].isFinal) {
             final_transcript += event.results[i][0].transcript;
+            _self.recognition.stop();
           } else {
             interim_transcript += event.results[i][0].transcript;
           }
         }
 
-        console.log(final_transcript, interim_transcript)
+        console.log(interim_transcript)
+        console.log(final_transcript)
 
-        // final_transcript = capitalize(final_transcript);
-        // final_span.innerHTML = linebreak(final_transcript);
-        // interim_span.innerHTML = linebreak(interim_transcript);
-
-        if (final_transcript || interim_transcript) {
-          // showButtons('inline-block');
-        }
       };
 
       // _self.recognition.start();
