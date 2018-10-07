@@ -45,6 +45,7 @@ export class CallComponent implements OnInit {
   }
 
   ngOnInit() {
+    
     console.log("ngOnInit")
 
     let _self = this;
@@ -126,7 +127,7 @@ export class CallComponent implements OnInit {
               console.log("Entities: ", b.entities)
 
               _self._ngZone.run(() => {
-                this.router.navigate(['/', 'result', {
+                _self.router.navigate(['/', 'result', {
                   title: 'Test'
                 }]);
               });
