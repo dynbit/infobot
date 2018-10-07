@@ -72,6 +72,7 @@ export class CallComponent implements OnInit {
       };
 
       this.recognition.onend = function() {
+        
         recognizing = false;
 
         if (ignore_onend) {
@@ -82,13 +83,6 @@ export class CallComponent implements OnInit {
           console.log('info_start');
           return;
         }
-
-        if (window.getSelection) {
-          window.getSelection().removeAllRanges();
-          var range = document.createRange();
-          range.selectNode(document.getElementById('final_span'));
-          window.getSelection().addRange(range);
-        }
       };
 
       this.recognition.onresult = function(event) {
@@ -97,15 +91,22 @@ export class CallComponent implements OnInit {
 
         for (var i = event.resultIndex; i < event.results.length; ++i) {
           if (event.results[i].isFinal) {
+
             final_transcript += event.results[i][0].transcript;
+            
             _self.recognition.stop();
+
+            console.log(final_transcript)
+
+            interim_transcript = '';
+            final_transcript = '';
+
           } else {
             interim_transcript += event.results[i][0].transcript;
+
+            console.log(interim_transcript)
           }
         }
-
-        console.log(interim_transcript)
-        console.log(final_transcript)
 
       };
 

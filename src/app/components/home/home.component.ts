@@ -102,6 +102,7 @@ export class HomeComponent implements OnInit {
 	        console.log(final_transcript)
 
 	        if (interim_transcript.toLowerCase().indexOf('kaun') !== -1) {
+	        	_self.recognition.stop();
 	        	_self.router.navigate(['/', 'call']);
 	        }
 
