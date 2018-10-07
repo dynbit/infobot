@@ -24,9 +24,8 @@ export class ToursService {
       this.getAll().subscribe(data => {
         var tours = Object.keys(data).map(k => data[k])
 
-
         for (let t of tours) {
-          if t.keyword == keyword {
+          if (t.keyword == keyword) {
             observer.next(t)
             observer.complete()
             return
@@ -38,7 +37,7 @@ export class ToursService {
         observer.error(error)
         observer.complete()
       });
-    }
+    })
   }
 
 }

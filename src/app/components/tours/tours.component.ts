@@ -35,7 +35,7 @@ export class ToursComponent implements OnInit {
         // console.log(this.route.snapshot.queryParamMap.getAll())
         this.keyword = params['keyword'];
 
-        this.toursService.findByKeyword("salty").subscribe(data => {
+        this.toursService.findByKeyword('salty').subscribe(data => {
           self.matchedTour = JSON.stringify(data, null, 2)
         }, error => {
           console.error(error)

@@ -8,9 +8,9 @@ import * as tours from './tours.json';
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     return {
-      kebabs,
-      tours,
-      tours,
+      'kebabs'   : kebabs,
+      'tours'    : tours,
+      'museums'  : museums,
     };
   }
 }
