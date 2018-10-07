@@ -103,6 +103,7 @@ export class CallComponent implements OnInit {
 
         if (!final_transcript) {
           console.log('info_start');
+          _self.recording = false;
           return;
         }
       };

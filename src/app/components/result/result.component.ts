@@ -76,13 +76,13 @@ export class ResultComponent implements OnInit {
           let list = Object.keys(result).map(k => result[k])
 
           let tour = list.find(item => {
-            console.log(item.keyword, params.keyword)
             return item.keyword === params.keyword
           })
 
           if (tour) {
             this.iFrameLink = this.sanitizer.bypassSecurityTrustResourceUrl(tour.source);
           } else {
+            console.log('Fallback to default')
             let link = 'http://visit.kaunas.lt/en/to-do/tours/tours-in-kaunas/kaunas-city-tour/'
             this.iFrameLink = this.sanitizer.bypassSecurityTrustResourceUrl(link);
           }
@@ -93,8 +93,17 @@ export class ResultComponent implements OnInit {
 
 
         })
+
+        return;
+
       }
 
+      let link = 'http://visit.kaunas.lt/en/to-do/tours/tours-in-kaunas/kaunas-city-tour/'
+      this.iFrameLink = this.sanitizer.bypassSecurityTrustResourceUrl(link);
+
+      setTimeout(() => {
+        this.loadIframe = true;
+      }, 500)
 
     });
 
