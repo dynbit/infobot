@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "keyword": "kebabinn",
+    "name": "Kebab Inn",
+    "description": "Is known to have the best german kebabs i Kaunas.",
+    "maps_link": "https://www.google.lt/maps/place/KEBAB+inn/@54.8759609,23.912441,15z/data=!4m2!3m1!1s0x0:0x145e8196ffb6fff?sa=X&ved=2ahUKEwi_8LWuhPLdAhUDEiwKHUwcA-4Q_BIwEHoECAgQCw",
+    "address": "Europos pr. 43, Kaunas"
+  },
+  {
+    "id": 2,
+    "keyword": "mrdoner",
+    "name": "Mr. Döner",
+    "description": "It's a food station, with a real turkish gigolo who serves really sexy food",
+    "maps_link": "https://www.google.lt/maps/place/Mr.+D%C3%B6ner/@54.9080931,23.9267162,17z/data=!3m1!4b1!4m5!3m4!1s0x46e71896fb554fdd:0xe7ccb78a27dbe4ab!8m2!3d54.90809!4d23.9289049",
+    "address": "K. Petrausko g. 6, Kaunas"
+  },
+  {
+    "id": 3,
+    "keyword": "citykebab",
+    "name": "City Kebab",
+    "description": "We serve the kebabs that are full of love!",
+    "maps_link": "https://www.google.lt/maps/place/City+Kebab/@54.8853048,24.0058054,17z/data=!3m1!4b1!4m5!3m4!1s0x46e718011c4fe961:0x4432248f25f3c8b3!8m2!3d54.8853017!4d24.0079942",
+    "address": "T. Masiulio g. 17A, Kaunas"
+  },
+  {
+    "id": 4,
+    "keyword": "liukskebab",
+    "name": "Liuks Kebebai",
+    "description": "5 different kebab joints around Kaunas. Huge variaty of options. The even cooked the longest kebab in Lithuania. 4 meters long!",
+    "maps_link": "https://www.google.lt/maps/place/Liuks+Kebabai/@54.8994813,23.8867358,17z/data=!3m1!4b1!4m5!3m4!1s0x46e722058b8a466d:0xef32bf0d9f7902bf!8m2!3d54.8994782!4d23.8889246",
+    "address": "Jonavos g. 1, Kaunas"
+  },
+  {
+    "id": 5,
+    "keyword": "todzeskebab",
+    "name": "Todzes kebabai",
+    "description": "It's said that they have the best kebabs in Kaunas with a frequent fights between local gangsters.",
+    "maps_link": "https://www.google.lt/maps/place/Tod%C5%BE%C4%97s+kebabai/@54.8984638,23.8934054,17z/data=!3m1!4b1!4m5!3m4!1s0x46e7220ec21e4199:0x29d75d29479f11bb!8m2!3d54.8984698!4d23.8953595",
+    "address": "Šv. Gertrūdos g. 38, Kaunas"
+  }
+]
