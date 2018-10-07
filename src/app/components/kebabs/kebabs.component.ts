@@ -10,15 +10,27 @@ import { KebabsService } from './kebabs.service';
 
 export class KebabsComponent implements OnInit {
 
-  public kebabsJsonString;
+  public keyword;
+  public matchedKebab;
+  public kebabs;
 
   constructor(
+    private route: ActivatedRoute,
+    private router: Router,
     private kebabsService: KebabsService,
   ) {}
 
 	ngOnInit() {
+    this.keyword = this.route.snapshot.paramMap.get('keyword')
+
     this.kebabsService.getAll().subscribe(data => {
-      this.kebabsJsonString = JSON.stringify(data, null, 2)
+      this.kebabs = JSON.stringify(data, null, 2)
+    }, error => {
+      console.error(error)
+    });
+
+    this.kebabsService.findByKeyword(this.keyword).subscribe(data => {
+      this.matchedKebab = JSON.stringify(data, null, 2)
     }, error => {
       console.error(error)
     });

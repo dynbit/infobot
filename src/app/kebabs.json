@@ -1,6 +1,6 @@
 [
   {
-    "id": 1,
+    "id": 0,
     "keyword": "kebabinn",
     "name": "Kebab Inn",
     "description": "Is known to have the best german kebabs i Kaunas.",
@@ -8,7 +8,7 @@
     "address": "Europos pr. 43, Kaunas"
   },
   {
-    "id": 2,
+    "id": 1,
     "keyword": "mrdoner",
     "name": "Mr. Döner",
     "description": "It's a food station, with a real turkish gigolo who serves really sexy food",
@@ -16,7 +16,7 @@
     "address": "K. Petrausko g. 6, Kaunas"
   },
   {
-    "id": 3,
+    "id": 2,
     "keyword": "citykebab",
     "name": "City Kebab",
     "description": "We serve the kebabs that are full of love!",
@@ -24,7 +24,7 @@
     "address": "T. Masiulio g. 17A, Kaunas"
   },
   {
-    "id": 4,
+    "id": 3,
     "keyword": "liukskebab",
     "name": "Liuks Kebebai",
     "description": "5 different kebab joints around Kaunas. Huge variaty of options. The even cooked the longest kebab in Lithuania. 4 meters long!",
@@ -32,7 +32,7 @@
     "address": "Jonavos g. 1, Kaunas"
   },
   {
-    "id": 5,
+    "id": 4,
     "keyword": "todzeskebab",
     "name": "Todzes kebabai",
     "description": "It's said that they have the best kebabs in Kaunas with a frequent fights between local gangsters.",

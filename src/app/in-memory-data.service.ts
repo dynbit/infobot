@@ -1,16 +1,17 @@
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 
-import * as kebabs from './kebabs.json';
-import * as museums from './museums.json';
-import * as tours from './tours.json';
+import * as museumsJson from './museums.json';
+import * as toursJson from './tours.json';
+import * as kebabsJson from './kebabs.json';
 
 
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     return {
-      'kebabs'   : kebabs,
-      'tours'    : tours,
-      'museums'  : museums,
+      'random'   : [],
+      'kebabs'   : kebabsJson,
+      'tours'    : toursJson,
+      'museums'  : museumsJson,
     };
   }
 }

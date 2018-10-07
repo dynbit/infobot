@@ -40,7 +40,15 @@ const routes: Routes = [
         component: MuseumsComponent
     },
     {
+        path: 'museums/:keyword',
+        component: MuseumsComponent
+    },
+    {
         path: 'kebabs',
+        component: KebabsComponent
+    },
+    {
+        path: 'kebabs/:keyword',
         component: KebabsComponent
     }
 ];
