@@ -26,7 +26,6 @@ export class CallComponent implements OnInit {
   }
 
 	ngOnInit() {
-
     let _self = this;
 
     (<any>window).startRecognition = function() {
@@ -79,7 +78,7 @@ export class CallComponent implements OnInit {
 
       this.recognition.onend = function() {
         recognizing = false;
-        
+
         if (ignore_onend) {
           return;
         }
@@ -124,7 +123,7 @@ export class CallComponent implements OnInit {
 
     }
 
-  }  
+  }
 
 }
 
