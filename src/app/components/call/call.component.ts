@@ -2,6 +2,18 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Meta, Title, DomSanitizer } from '@angular/platform-browser';
 
+const axios = require('axios');
+
+function processText(query, callback) {
+  axios.post('http://localhost:5000/parse', { query: query, project: "current"})
+    .then(function (response) {
+      callback(query, response.data);
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+}
+
 @Component({
   templateUrl: 'call.component.html',
   styleUrls: ['call.component.scss'],
@@ -42,7 +54,7 @@ export class CallComponent implements OnInit {
     } else {
 
       this.recognition = new webkitSpeechRecognition();
-      this.recognition.continuous = true;
+      //this.recognition.continuous = true;
       this.recognition.interimResults = true;
       this.recognition.lang = "en-US";
 
