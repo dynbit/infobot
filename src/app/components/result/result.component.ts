@@ -31,6 +31,7 @@ export class ResultComponent implements OnInit {
   public isLoading = true;
   public mapLink;
   public sub;
+  public iFrameLink = this.sanitizer.bypassSecurityTrustResourceUrl('http://visit.kaunas.lt/en/to-see/museums-and-galleries/museum/lithuanian-open-air-folk-museum/');
 
   constructor(
     private route: ActivatedRoute,
@@ -53,7 +54,6 @@ export class ResultComponent implements OnInit {
       .subscribe(data => {
         console.log(data)
       });
-
 
     this.resultService.getResult('test').subscribe(data => {
 
