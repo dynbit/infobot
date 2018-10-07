@@ -24,7 +24,8 @@ const routes: Routes = [
         path: 'result',
         component: ResultComponent,
         data : {
-            title: ''
+            search_type: '',
+            keyword: '',
         },
     },
     {
