@@ -17,6 +17,10 @@ main {
       width: 100%;
       overflow: hidden;
 
+      &.hidden {
+        display: none;
+      }
+
       iframe {
         border: 0;
         margin-top: -40vh;

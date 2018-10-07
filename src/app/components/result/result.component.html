@@ -3,7 +3,7 @@
 </header>
 
 <main>
-	<div class="wrapper loading" *ngIf="isLoading && !iFrameLink">
+	<div class="wrapper loading" *ngIf="isLoading">
 
 		<h1>Got it!</h1>
 		<p>Just a sec...</p>
@@ -24,7 +24,7 @@
 		
 	</div>
 
-	<div class="wrapper result" *ngIf="!isLoading">
+	<div class="wrapper result" *ngIf="!isLoading && !iFrameLink">
 
 		<div class="phrase">
 			<h3>Here's what I heard</h3>
@@ -55,8 +55,13 @@
 		
 	</div>
 
-	<div class="wrapper iframe" *ngIf="iFrameLink">
+	<div class="wrapper iframe" *ngIf="iFrameLink" [ngClass]="{hidden: isLoading}">
 		<iframe id="kaunas" width="100%" height="100%" frameborder="0" style="border:0"
-				[src]='iFrameLink' allowfullscreen></iframe>
+				[src]='iFrameLink' allowfullscreen (load)="onIframeLoad($event)"></iframe>
 	</div>
 </main>
+
+
+
+
+

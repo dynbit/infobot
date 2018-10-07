@@ -31,7 +31,8 @@ export class ResultComponent implements OnInit {
   public isLoading = true;
   public mapLink;
   public sub;
-  public iFrameLink = this.sanitizer.bypassSecurityTrustResourceUrl('http://visit.kaunas.lt/en/to-see/museums-and-galleries/museum/lithuanian-open-air-folk-museum/');
+  public iFrameLink;
+  private loadIframe;
 
   constructor(
     private route: ActivatedRoute,
@@ -47,42 +48,54 @@ export class ResultComponent implements OnInit {
     this.sub.unsubscribe();
   }
 
+  onIframeLoad(event) {
+
+    if (this.loadIframe) {
+      this.isLoading = false;
+    }
+
+  }
+
 	ngOnInit() {
 
-    this.sub = this.route
-      .queryParams
-      .subscribe(data => {
-        console.log(data)
-      });
-
-    this.resultService.getResult('test').subscribe(data => {
-
-      this.result = new Result(data);
-
-      let apiKey = AppConfig.googleMapsAPIkey;
-      let mapLink = `https://www.google.com/maps/embed/v1/place?q=${this.result.address}&key=${apiKey}`
-      let imagesToLoad = []; 
-
-      this.mapLink = this.sanitizer.bypassSecurityTrustResourceUrl(mapLink);
-
-      this.result.photos.forEach(image => {
-
-        let imagePromise = loadImage(image).catch(function () {
-          console.error('Image failed to load :(');
-        });
-
-        imagesToLoad.push(imagePromise)
-
-      })
-
-      Promise.all(imagesToLoad).then(result => {
-        this.isLoading = false;
-      })
-
-
-    }, error => {
-      console.error(error)
+    this.route.params
+    .subscribe((params) => {  
+      console.log(params)
     });
+
+    this.iFrameLink = this.sanitizer.bypassSecurityTrustResourceUrl('http://visit.kaunas.lt/en/to-see/museums-and-galleries/museum/lithuanian-open-air-folk-museum/');
+    
+    setTimeout(() => {
+      this.loadIframe = true;
+    }, 500)
+
+    // this.resultService.getResult('test').subscribe(data => {
+
+    //   this.result = new Result(data);
+
+    //   let apiKey = AppConfig.googleMapsAPIkey;
+    //   let mapLink = `https://www.google.com/maps/embed/v1/place?q=${this.result.address}&key=${apiKey}`
+    //   let imagesToLoad = []; 
+
+    //   this.mapLink = this.sanitizer.bypassSecurityTrustResourceUrl(mapLink);
+
+    //   this.result.photos.forEach(image => {
+
+    //     let imagePromise = loadImage(image).catch(function () {
+    //       console.error('Image failed to load :(');
+    //     });
+
+    //     imagesToLoad.push(imagePromise)
+
+    //   })
+
+    //   Promise.all(imagesToLoad).then(result => {
+    //     this.isLoading = false;
+    //   })
+
+    // }, error => {
+    //   console.error(error)
+    // });
 
 
 	}
