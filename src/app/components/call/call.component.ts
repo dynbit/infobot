@@ -45,7 +45,7 @@ export class CallComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
     console.log("ngOnInit")
 
     let _self = this;
@@ -147,6 +147,13 @@ export class CallComponent implements OnInit {
       };
 
     }
+
+    this.route.params
+    .subscribe((params) => {
+      if (params.autostart) {
+        this.startRecognition();
+      }
+    });
 
   }
 
