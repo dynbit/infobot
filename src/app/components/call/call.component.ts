@@ -132,7 +132,7 @@ export class CallComponent implements OnInit {
                   }]);
                 });
               } else {
-                this.startRecognition()
+                _self.startRecognition()
               }
 
             })
