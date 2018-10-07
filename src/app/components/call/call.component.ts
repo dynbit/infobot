@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { Meta, Title, DomSanitizer } from '@angular/platform-browser';
 import { switchMap } from 'rxjs/operators';
+import { NgZone } from '@angular/core';
 
 const axios = require('axios');
 
@@ -28,6 +29,7 @@ export class CallComponent implements OnInit {
   public params;
 
   constructor(
+    private _ngZone: NgZone,
     private route: ActivatedRoute,
     private router: Router,
     private sanitizer: DomSanitizer,
@@ -42,7 +44,8 @@ export class CallComponent implements OnInit {
     this.recording = true;
   }
 
-	ngOnInit() {
+  ngOnInit() {
+    console.log("ngOnInit")
 
     let _self = this;
 
@@ -122,9 +125,11 @@ export class CallComponent implements OnInit {
               console.log("Intent: ", b.intent.name)
               console.log("Entities: ", b.entities)
 
-              _self.router.navigate(['/', 'result', {
-                title: 'Test'
-              }]);
+              _self._ngZone.run(() => {
+                this.router.navigate(['/', 'result', {
+                  title: 'Test'
+                }]);
+              });
 
             })
 

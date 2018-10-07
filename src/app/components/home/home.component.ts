@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Meta, Title, DomSanitizer } from '@angular/platform-browser';
-
+import { NgZone } from '@angular/core';
 
 @Component({
   templateUrl: 'home.component.html',
@@ -13,7 +13,8 @@ export class HomeComponent implements OnInit {
 	public recognition;
 
 	constructor(
-		private router: Router
+		private router: Router,
+    private _ngZone: NgZone,
 	) {}
 
 	ngOnInit() {
@@ -96,9 +97,11 @@ export class HomeComponent implements OnInit {
 
 	        if (interim_transcript.toLowerCase().indexOf('kaun') !== -1) {
 	        	_self.recognition.stop();
-	        	_self.router.navigate(['/', 'call', {
-	        		autostart: true
-	        	}]);
+            _self._ngZone.run(() => {
+              _self.router.navigate(['/', 'call', {
+                autostart: true
+              }]);
+            });
 	        }
 
 	      };
