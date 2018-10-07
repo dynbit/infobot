@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AppConfig } from '../../../environments/environment';
-import { Observable, of, empty }  from 'rxjs';
+import { Observable, of }  from 'rxjs';
 
 // import { Tour }       from './app/tour';
 
@@ -16,16 +16,24 @@ export class ToursService {
   }
 
   getAll() {
-    return this.http.get('/api/tours')
+    return Observable.create(observer => {
+      this.http.get('/api/tours').subscribe(data => {
+        delete data['default']
+        observer.next(data)
+        observer.complete()
+      }, error => {
+        observer.error(error)
+        observer.complete()
+      });
+    })
   }
 
   findByKeyword(keyword: string) {
     return Observable.create(observer => {
       this.getAll().subscribe(data => {
         var tours = Object.keys(data).map(k => data[k])
-
         for (let t of tours) {
-          if (t.keyword == keyword) {
+          if (t.keyword.toLowerCase() == keyword) {
             observer.next(t)
             observer.complete()
             return
