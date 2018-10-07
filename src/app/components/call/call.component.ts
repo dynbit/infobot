@@ -24,7 +24,7 @@ function processText(query, callback) {
 export class CallComponent implements OnInit {
 
   public recognition;
-  public recording = false;
+  public recording: boolean = false;
   public sub;
   public params;
 
@@ -68,7 +68,6 @@ export class CallComponent implements OnInit {
 
       this.recognition.onstart = function() {
         recognizing = true;
-        _self.recording = true;
         console.log('info_speak_now');
       };
 
@@ -95,7 +94,10 @@ export class CallComponent implements OnInit {
       this.recognition.onend = function() {
 
         recognizing = false;
-        _self.recording = false;
+
+        _self._ngZone.run(() => {
+          _self.recording = false;
+        });
 
         if (ignore_onend) {
           return;
@@ -129,6 +131,8 @@ export class CallComponent implements OnInit {
                     keyword: b.entities[0].value,
                   }]);
                 });
+              } else {
+                this.startRecognition()
               }
 
             })
