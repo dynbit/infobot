@@ -22,6 +22,10 @@ const routes: Routes = [
         component: ResultComponent
     },
     {
+        path: 'tours/:keyword',
+        component: ToursComponent
+    },
+    {
         path: 'tours',
         component: ToursComponent
     },
