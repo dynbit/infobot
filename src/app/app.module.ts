@@ -1,3 +1,7 @@
+// import 'zone.js/dist/zone-mix';
+import 'reflect-metadata';
+import '../polyfills';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -23,10 +27,8 @@ import { MuseumsService } from './components/museums/museums.service';
 import { KebabsService } from './components/kebabs/kebabs.service';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+
 import { InMemoryDataService }  from './in-memory-data.service';
-import { InMemoryToursService }  from './in-memory-tours.service';
-import { InMemoryMuseumsService } from './in-memory-museums.service';
-import { InMemoryKebabsService } from './in-memory-kebabs.service';
 
 
 @NgModule({
@@ -44,18 +46,7 @@ import { InMemoryKebabsService } from './in-memory-kebabs.service';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    ),
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryToursService, { dataEncapsulation: false }
-    ),
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryMuseumsService, { dataEncapsulation: false }
-    ),
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryKebabsService, { dataEncapsulation: false }
-    ),
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService),
     AppRoutingModule,
   ],
   providers: [

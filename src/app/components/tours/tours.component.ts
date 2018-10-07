@@ -10,9 +10,14 @@ import { ToursService } from './tours.service';
 
 export class ToursComponent implements OnInit {
 
+  public keyword;
+  public matchedTour;
   public tours;
+  public sub;
 
   constructor(
+    private route: ActivatedRoute,
+    private router: Router,
     private toursService: ToursService,
   ) {}
 
@@ -22,6 +27,24 @@ export class ToursComponent implements OnInit {
     }, error => {
       console.error(error)
     });
+
+    var self = this
+    this.sub = this.route
+      .queryParams
+      .subscribe(params => {
+        // console.log(this.route.snapshot.queryParamMap.getAll())
+        this.keyword = params['keyword'];
+
+        this.toursService.findByKeyword('salty').subscribe(data => {
+          self.matchedTour = JSON.stringify(data, null, 2)
+        }, error => {
+          console.error(error)
+        });
+      });
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
 }

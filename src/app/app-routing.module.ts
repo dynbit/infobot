@@ -28,6 +28,10 @@ const routes: Routes = [
         },
     },
     {
+        path: 'tours/:keyword',
+        component: ToursComponent
+    },
+    {
         path: 'tours',
         component: ToursComponent
     },
