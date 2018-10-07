@@ -19,7 +19,10 @@ const routes: Routes = [
     },
     {
         path: 'result',
-        component: ResultComponent
+        component: ResultComponent,
+        data : {
+            title: ''
+        },
     },
     {
         path: 'tours',

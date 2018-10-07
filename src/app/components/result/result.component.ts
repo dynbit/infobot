@@ -30,6 +30,7 @@ export class ResultComponent implements OnInit {
   public result: Result = new Result();
   public isLoading = true;
   public mapLink;
+  public sub;
 
   constructor(
     private route: ActivatedRoute,
@@ -40,7 +41,18 @@ export class ResultComponent implements OnInit {
     private resultService: ResultService,
   ) {}
 
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
+
 	ngOnInit() {
+
+    this.sub = this.route
+      .queryParams
+      .subscribe(data => {
+        console.log(data)
+      });
 
 
     this.resultService.getResult('test').subscribe(data => {

@@ -103,15 +103,23 @@ export class CallComponent implements OnInit {
 
         for (var i = event.resultIndex; i < event.results.length; ++i) {
           if (event.results[i].isFinal) {
+            
             var transcript = event.results[i][0].transcript
             console.log("Final transcript: ", transcript)
+
             processText(transcript, function(a,b) {
               console.log("Intent: ", b.intent.name)
               console.log("Entities: ", b.entities)
+
+              _self.router.navigate(['/', 'result', {
+                title: 'Test'
+              }]);
+
             })
 
             interim_transcript = '';
             final_transcript = '';
+
           } else {
             interim_transcript += event.results[i][0].transcript;
           }

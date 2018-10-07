@@ -34,6 +34,9 @@ body {
     overflow-y: scroll;
     -webkit-transition: background-color .2s;
     -webkit-font-smoothing: antialiased;
+    background-image: url(/assets/images/bg.png);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 h1 {
