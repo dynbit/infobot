@@ -4,6 +4,9 @@ import { Meta, Title, DomSanitizer } from '@angular/platform-browser';
 import { AppConfig } from '../../../environments/environment';
 
 import { ResultService } from './result.service';
+import { KebabsService } from '../kebabs/kebabs.service'
+import { MuseumsService } from '../museums/museums.service'
+import { ToursService } from '../tours/tours.service'
 
 import loadImage from 'image-promise';
 
@@ -41,6 +44,9 @@ export class ResultComponent implements OnInit {
     private meta: Meta,
     private title: Title,
     private resultService: ResultService,
+    private kebabs: KebabsService,
+    private museums: MuseumsService,
+    private tours: ToursService,
   ) {}
 
 
@@ -60,14 +66,43 @@ export class ResultComponent implements OnInit {
 
     this.route.params
     .subscribe((params) => {  
+
       console.log(params)
+
+      if (params.search_type === 'tour-type') {
+        
+        this.tours.getAll().subscribe((result) => {
+
+          let list = Object.keys(result).map(k => result[k])
+
+          let tour = list.find(item => {
+            console.log(item.keyword, params.keyword)
+            return item.keyword === params.keyword
+          })
+
+          if (tour) {
+            this.iFrameLink = this.sanitizer.bypassSecurityTrustResourceUrl(tour.source);
+          } else {
+            let link = 'http://visit.kaunas.lt/en/to-do/tours/tours-in-kaunas/kaunas-city-tour/'
+            this.iFrameLink = this.sanitizer.bypassSecurityTrustResourceUrl(link);
+          }
+
+          setTimeout(() => {
+            this.loadIframe = true;
+          }, 500)
+
+
+        })
+      }
+
+
     });
 
-    this.iFrameLink = this.sanitizer.bypassSecurityTrustResourceUrl('http://visit.kaunas.lt/en/to-see/museums-and-galleries/museum/lithuanian-open-air-folk-museum/');
+    // this.iFrameLink = this.sanitizer.bypassSecurityTrustResourceUrl('http://visit.kaunas.lt/en/to-see/museums-and-galleries/museum/lithuanian-open-air-folk-museum/');
     
-    setTimeout(() => {
-      this.loadIframe = true;
-    }, 500)
+    // setTimeout(() => {
+    //   this.loadIframe = true;
+    // }, 500)
 
     // this.resultService.getResult('test').subscribe(data => {
 

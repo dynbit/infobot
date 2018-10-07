@@ -34,7 +34,7 @@ export class CallComponent implements OnInit {
     private router: Router,
     private sanitizer: DomSanitizer,
     private meta: Meta,
-    private title: Title,
+    private title: Title
   ) {
 
   }
@@ -121,7 +121,7 @@ export class CallComponent implements OnInit {
               console.log("Intent: ", b.intent.name)
               console.log("Entities: ", b.entities)
 
-              if b.entities.length > 0 {
+              if (b.entities.length > 0) {
                 _self._ngZone.run(() => {
                   _self.router.navigate(['/', 'result', {
                     search_type: b.entities[0].entity,
