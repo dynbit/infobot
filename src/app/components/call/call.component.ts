@@ -84,7 +84,7 @@ export class CallComponent implements OnInit {
       };
 
       this.recognition.onend = function() {
-        
+
         recognizing = false;
 
         if (ignore_onend) {
@@ -103,22 +103,21 @@ export class CallComponent implements OnInit {
 
         for (var i = event.resultIndex; i < event.results.length; ++i) {
           if (event.results[i].isFinal) {
-
-            final_transcript += event.results[i][0].transcript;
-            
-            _self.recognition.stop();
-
-            console.log(final_transcript)
+            var transcript = event.results[i][0].transcript
+            console.log("Final transcript: ", transcript)
+            processText(transcript, function(a,b) {
+              console.log("Intent: ", b.intent.name)
+              console.log("Entities: ", b.entities)
+            })
 
             interim_transcript = '';
             final_transcript = '';
-
           } else {
             interim_transcript += event.results[i][0].transcript;
-
-            console.log(interim_transcript)
           }
         }
+
+        console.log(interim_transcript)
 
       };
 
