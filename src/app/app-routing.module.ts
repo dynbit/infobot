@@ -15,7 +15,10 @@ const routes: Routes = [
     },
     {
         path: 'call',
-        component: CallComponent
+        component: CallComponent,
+        data: {
+            autostart: false
+        }
     },
     {
         path: 'result',

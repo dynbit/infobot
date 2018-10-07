@@ -6,17 +6,21 @@
 	<div class="wrapper">
 		
 
-		<p>Hey! This is your Kaunas info guide.</p>
+		<h1>Hey! This is your Kaunas info guide.</h1>
 		<p>Say, how may I help you?</p>
 
-		<div class="mic" (click)="startRecognition($event)"></div>
+		<div class="mic" (click)="startRecognition($event)" [ngClass]="{active: recording}"></div>
 
-		<h3>Here's something you can ask about...</h3>
-		<ul class="examples">
-			<li>Give me kebab. Bitch!</li>
-			<li>Send nudes!</li>
-			<li>I want an adventure</li>
-		</ul>
+	</div>
+
+	<div class="examples">
 		
+		<p>Here's something you can ask about...</p>
+
+		<ul>
+			<li><span>“</span>I want to book Kaunas city tour</li>
+			<li><span>“</span>What are the best restaurants around here?</li>
+			<li><span>“</span>Where can I find a pharmacy?</li>
+		</ul>
 	</div>
 </main>

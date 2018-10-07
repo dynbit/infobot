@@ -5,36 +5,55 @@ main {
   min-height: 100%;
   padding: 50px 0 0;
   box-sizing: border-box;
-
   display: flex;
   align-items: center;
+
+  &:after {
+    content: '';
+    position: fixed;
+    top: -50px;
+    right: -50px;
+    bottom: -50px;
+    left: -50px;
+    z-index: -1;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 1;
+    filter: blur(3px);
+  }
 
   .wrapper {
     position: relative;
     white-space: nowrap;
     display: inline-block;
     margin: 0 auto 0;
+    z-index: 10;
   }
 
 
   .logo {
-      background-image: url(/assets/images/kaunas.png);
-      background-size: cover;
-      background-repeat: no-repeat;
-      height: 160px;
-      width: 215px;
+    background-image: url(/assets/images/kaunas.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 160px;
+    width: 215px;
+    margin: 0 auto;
   }
 
   .call {
-    background: rgba(255,255,255, 0.1);
-    padding: 20px;
+    background: #ff2e65;
+    padding: 30px 75px;
     margin: 30px 0 0;
-  }
+    border-radius: 3px;
+    color: #fff;
 
-  // p {
-  //   font-size: 40px;
-  //   font-style: italic;
-  //   margin: 0;
-  // }
+    span {
+      font-family: initial;
+      font-size: 32px;
+      line-height: 20px;
+      vertical-align: middle;
+      margin: 0 2px;
+    }
+  }
 
 }

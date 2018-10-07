@@ -76,13 +76,6 @@ export class HomeComponent implements OnInit {
 	          console.log('info_start');
 	          return;
 	        }
-
-	        if (window.getSelection) {
-	          window.getSelection().removeAllRanges();
-	          var range = document.createRange();
-	          range.selectNode(document.getElementById('final_span'));
-	          window.getSelection().addRange(range);
-	        }
 	      };
 
 	      this.recognition.onresult = function(event) {
@@ -103,7 +96,9 @@ export class HomeComponent implements OnInit {
 
 	        if (interim_transcript.toLowerCase().indexOf('kaun') !== -1) {
 	        	_self.recognition.stop();
-	        	_self.router.navigate(['/', 'call']);
+	        	_self.router.navigate(['/', 'call', {
+	        		autostart: true
+	        	}]);
 	        }
 
 	      };

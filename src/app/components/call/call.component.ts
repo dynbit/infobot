@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { Meta, Title, DomSanitizer } from '@angular/platform-browser';
+import { switchMap } from 'rxjs/operators';
 
 const axios = require('axios');
 
@@ -22,6 +23,9 @@ function processText(query, callback) {
 export class CallComponent implements OnInit {
 
   public recognition;
+  public recording = false;
+  public sub;
+  public params;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,13 +33,17 @@ export class CallComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private meta: Meta,
     private title: Title,
-  ) {}
+  ) {
 
-  startRecognition = function(event) {
+  }
+
+  startRecognition = function(event = null) {
     this.recognition.start();
+    this.recording = true;
   }
 
 	ngOnInit() {
+
     let _self = this;
 
     (<any>window).startRecognition = function() {
@@ -60,6 +68,7 @@ export class CallComponent implements OnInit {
 
       this.recognition.onstart = function() {
         recognizing = true;
+        _self.recording = true;
         console.log('info_speak_now');
       };
 
@@ -86,6 +95,7 @@ export class CallComponent implements OnInit {
       this.recognition.onend = function() {
 
         recognizing = false;
+        _self.recording = false;
 
         if (ignore_onend) {
           return;
@@ -108,6 +118,7 @@ export class CallComponent implements OnInit {
             console.log("Final transcript: ", transcript)
 
             processText(transcript, function(a,b) {
+              
               console.log("Intent: ", b.intent.name)
               console.log("Entities: ", b.entities)
 
@@ -128,8 +139,6 @@ export class CallComponent implements OnInit {
         console.log(interim_transcript)
 
       };
-
-      // _self.recognition.start();
 
     }
 
