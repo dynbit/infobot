@@ -50,10 +50,6 @@ export class CallComponent implements OnInit {
 
     let _self = this;
 
-    (<any>window).startRecognition = function() {
-      _self.recognition.start();
-    }
-
     let recognizing;
     let ignore_onend;
     let final_transcript = '';
