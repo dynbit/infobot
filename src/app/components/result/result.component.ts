@@ -64,12 +64,12 @@ export class ResultComponent implements OnInit {
 	ngOnInit() {
 
     this.route.params
-    .subscribe((params) => {  
+    .subscribe((params) => {
 
       console.log(params)
 
       if (params.search_type === 'tour-type') {
-        
+
         this.tours.getAll().subscribe((result) => {
 
           let list = Object.keys(result).map(k => result[k])
@@ -78,16 +78,18 @@ export class ResultComponent implements OnInit {
             return item.keyword === params.keyword
           })
 
-          if (tour) {
-            this.iFrameLink = this.sanitizer.bypassSecurityTrustResourceUrl(tour.source);
-          } else {
-            console.log('Fallback to default')
-            let link = 'http://visit.kaunas.lt/en/to-do/tours/tours-in-kaunas/kaunas-city-tour/'
-            this.iFrameLink = this.sanitizer.bypassSecurityTrustResourceUrl(link);
+          if (!tour) {
+            tour = list.find(item => {
+              return item.id === 19
+            })
           }
+
+          this.iFrameLink = this.sanitizer.bypassSecurityTrustResourceUrl(tour.source);
+
 
           setTimeout(() => {
             this.loadIframe = true;
+            this.sayText(tour.description);
           }, 500)
 
 
@@ -97,7 +99,7 @@ export class ResultComponent implements OnInit {
       }
 
       if (params.search_type === 'kebab-type' || params.search_type === 'food-type') {
-        
+
         this.kebabs.getAll().subscribe((result) => {
 
           let list = Object.keys(result).map(k => result[k])
@@ -123,7 +125,7 @@ export class ResultComponent implements OnInit {
             this.isLoading = false;
 
 
-          } 
+          }
 
         })
 
@@ -141,7 +143,7 @@ export class ResultComponent implements OnInit {
     });
 
     // this.iFrameLink = this.sanitizer.bypassSecurityTrustResourceUrl('http://visit.kaunas.lt/en/to-see/museums-and-galleries/museum/lithuanian-open-air-folk-museum/');
-    
+
     // setTimeout(() => {
     //   this.loadIframe = true;
     // }, 500)
@@ -152,7 +154,7 @@ export class ResultComponent implements OnInit {
 
     //   let apiKey = AppConfig.googleMapsAPIkey;
     //   let mapLink = `https://www.google.com/maps/embed/v1/place?q=${this.result.address}&key=${apiKey}`
-    //   let imagesToLoad = []; 
+    //   let imagesToLoad = [];
 
     //   this.mapLink = this.sanitizer.bypassSecurityTrustResourceUrl(mapLink);
 
@@ -176,6 +178,17 @@ export class ResultComponent implements OnInit {
 
 
 	}
+
+  sayText(text: string) {
+    const wdw = (window as any)
+    if ('speechSynthesis' in wdw) {
+      var msg = new SpeechSynthesisUtterance();
+      msg.text = text
+      msg.voice = wdw.speechSynthesis.getVoices().filter(function(voice) { return voice.name == "Google UK English Male"; })[0];
+      wdw.speechSynthesis.speak(new SpeechSynthesisUtterance(text));
+    }
+  }
+
 
 }
 
