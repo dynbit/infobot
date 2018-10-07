@@ -5,6 +5,7 @@ import { HomeComponent } from './components/home/home.component';
 import { CallComponent } from './components/call/call.component';
 import { ResultComponent } from './components/result/result.component';
 import { ToursComponent } from './components/tours/tours.component';
+import { MuseumsComponent } from './components/museums/museums.component';
 
 const routes: Routes = [
     {
@@ -22,6 +23,10 @@ const routes: Routes = [
     {
         path: 'tours',
         component: ToursComponent
+    },
+    {
+        path: 'museums',
+        component: MuseumsComponent
     }
 ];
 

@@ -13,12 +13,16 @@ import { HomeComponent } from './components/home/home.component';
 import { CallComponent } from './components/call/call.component';
 import { ResultComponent } from './components/result/result.component';
 import { ToursComponent } from './components/tours/tours.component';
+import { MuseumsComponent } from './components/museums/museums.component';
+
 import { ResultService } from './components/result/result.service';
 import { ToursService } from './components/tours/tours.service';
+import { MuseumsService } from './components/museums/museums.service';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './in-memory-data.service';
 import { InMemoryToursService }  from './in-memory-tours.service';
+import { InMemoryMuseumsService } from './in-memory-museums.service';
 
 
 @NgModule({
@@ -29,6 +33,7 @@ import { InMemoryToursService }  from './in-memory-tours.service';
     ResultComponent,
     WebviewDirective,
     ToursComponent,
+    MuseumsComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,11 +45,15 @@ import { InMemoryToursService }  from './in-memory-tours.service';
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryToursService, { dataEncapsulation: false }
     ),
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryMuseumsService, { dataEncapsulation: false }
+    ),
     AppRoutingModule,
   ],
   providers: [
     ResultService,
     ToursService,
+    MuseumsService,
    ],
   bootstrap: [AppComponent]
 })
