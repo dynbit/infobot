@@ -39,6 +39,7 @@
     "e2e": "npm run postinstall:web && ng e2e"
   },
   "dependencies": {
+    "@types/webspeechapi": "0.0.29",
     "angular-in-memory-web-api": "^0.6.1",
     "image-promise": "^5.0.1"
   },
