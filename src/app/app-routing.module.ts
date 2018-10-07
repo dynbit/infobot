@@ -6,6 +6,7 @@ import { CallComponent } from './components/call/call.component';
 import { ResultComponent } from './components/result/result.component';
 import { ToursComponent } from './components/tours/tours.component';
 import { MuseumsComponent } from './components/museums/museums.component';
+import { KebabsComponent } from './components/kebabs/kebabs.component';
 
 const routes: Routes = [
     {
@@ -27,6 +28,10 @@ const routes: Routes = [
     {
         path: 'museums',
         component: MuseumsComponent
+    },
+    {
+        path: 'kebabs',
+        component: KebabsComponent
     }
 ];
 
