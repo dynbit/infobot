@@ -132,7 +132,12 @@ export class CallComponent implements OnInit {
                   }]);
                 });
               } else {
-                _self.startRecognition()
+
+                if (!_self.recording) {
+                  console.log('Restart recording')
+                  _self.startRecognition()   
+                }
+
               }
 
             })
