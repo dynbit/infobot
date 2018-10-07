@@ -1,5 +1,5 @@
 <header>
-	<div class="logo"></div>
+	<a class="logo" [routerLink]="['/']"></a>
 </header>
 
 <main>
@@ -26,32 +26,32 @@
 
 	<div class="wrapper result" *ngIf="!isLoading && !iFrameLink">
 
-		<div class="phrase">
+		<!-- <div class="phrase">
 			<h3>Here's what I heard</h3>
 			<span>{{result.query}}</span>
-		</div>
+		</div> -->
 
 		<div class="location">
 			<h1>{{result.title}}</h1>
 			<p>
 				Address: <strong>{{result.address}}</strong><br>
-				Phone: <strong>{{result.phone}}</strong>
+				<!-- Phone: <strong>{{result.phone}}</strong> -->
 			</p>
-			<p>{{result.desc}}</p>
+			<p>{{result.description}}</p>
 		</div>
 
-		<div class="photos">
+		<!-- <div class="photos">
 		   <img src="{{image}}" alt="{{result.title}}" *ngFor="let image of result.photos" />
 		</div>
-
+ -->
 		<div class="map">
 			<iframe width="100%" height="450" frameborder="0" style="border:0"
 				[src]='mapLink' allowfullscreen></iframe>
 		</div>
 		
-		<div class="return">
+		<!-- <div class="return">
 			Say <strong>"Hi Kaunas"</strong> to search again...
-		</div>
+		</div> -->
 		
 	</div>
 

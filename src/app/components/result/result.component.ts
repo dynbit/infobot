@@ -12,10 +12,14 @@ import loadImage from 'image-promise';
 
 class Result {
 
+  public keyword
+  public name
+  public description
+  public maps_link
+  public address
   public photos;
   public title;
   public desc;
-  public address;
 
   constructor(config = {}) {
     Object.assign(this, config);
@@ -48,11 +52,6 @@ export class ResultComponent implements OnInit {
     private museums: MuseumsService,
     private tours: ToursService,
   ) {}
-
-
-  ngOnDestroy() {
-    this.sub.unsubscribe();
-  }
 
   onIframeLoad(event) {
 
@@ -91,6 +90,40 @@ export class ResultComponent implements OnInit {
             this.loadIframe = true;
           }, 500)
 
+
+        })
+
+        return;
+      }
+
+      if (params.search_type === 'kebab-type' || params.search_type === 'food-type') {
+        
+        this.kebabs.getAll().subscribe((result) => {
+
+          let list = Object.keys(result).map(k => result[k])
+
+          let kebab = list.find(item => {
+            return item.keyword === params.keyword
+          })
+
+          if (!kebab) {
+            kebab = list.find(item => {
+              return item.keyword === 'citykebab'
+            })
+          }
+
+          if (kebab) {
+
+            this.result = new Result(kebab);
+
+            let apiKey = AppConfig.googleMapsAPIkey;
+            let mapLink = `https://www.google.com/maps/embed/v1/place?q=${this.result.address}&key=${apiKey}`
+
+            this.mapLink = this.sanitizer.bypassSecurityTrustResourceUrl(mapLink);
+            this.isLoading = false;
+
+
+          } 
 
         })
 
